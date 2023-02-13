@@ -1,11 +1,15 @@
 import { Link, Outlet } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
+import './Navigation.scss'
+
 export default function Navigation() {
     return (
         <>
-        <nav>
+        <nav className='nav'>
             <div className="nav-logo">
-                <Logo/>
+                <Link to='/'>
+                    <Logo />
+                </Link>
             </div>
             <ul className="nav-wrap">
                 <li>

@@ -1,4 +1,5 @@
 import Navigation from "../../components/Navigation/"
+import Categories from "../../components/categories/"
 
 export default function Home() {
  const data = [
@@ -30,6 +31,6 @@ export default function Home() {
 ]
 
     return (
-      <Navigation/>
+      <Categories categories={data} />
   )
 }

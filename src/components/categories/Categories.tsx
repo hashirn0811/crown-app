@@ -1,5 +1,5 @@
 import './Categories.scss'
-import CategoryItem, { ICategoryItem } from '../category-item/category-item'
+import CategoryItem, { ICategoryItem } from './category-item'
 
 type ICategories = {
     categories: ICategoryItem[]
