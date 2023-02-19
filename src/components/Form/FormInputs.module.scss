@@ -13,6 +13,7 @@
 }
 
 .formInput {
+    width: 100%;
     border: none;
     border-bottom: 1px solid grey;
     padding-block: 0.6em;
@@ -30,6 +31,7 @@
     top: 43%;
     transition: top 0.3s, font-size 0.2s;
     margin-left: 0.2rem;
+    pointer-events: none;
 }
 
 .formInput:focus ~ .formLabel {
