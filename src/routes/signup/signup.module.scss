@@ -1,0 +1,29 @@
+.section_signup {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2,
+    p {
+        margin-bottom: 1rem;
+    }
+}
+.form_signup {
+    display: flex;
+    flex-direction: column;
+
+    button {
+        align-self: start;
+    }
+}
+
+.form_wrap {
+    align-self: start;
+}

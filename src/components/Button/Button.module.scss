@@ -1,0 +1,14 @@
+.button {
+    padding-block: 0.2em;
+    padding-inline: 1em;
+    font-size: 1.2rem;
+    border: none;
+    background-color: black;
+    color: #fff;
+
+    &:hover {
+        background-color: #fff;
+        color: #000;
+        outline: 1px solid currentColor;
+    }
+}
