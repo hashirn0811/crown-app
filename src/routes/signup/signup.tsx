@@ -2,6 +2,7 @@ import { useState } from "react"
 import FormInput from "../../components/Form/"
 import Button from "../../components/Button/"
 import styles from "./signup.module.scss"
+import { createUser } from "../../helpers/firebase"
 
 export interface ISignUp {
   displayName: string
@@ -40,12 +41,22 @@ export default function SignUp() {
       placeholder: "password",
     },
     {
-      id: 2,
+      id: 3,
       name: "confirmPassword",
       type: "password",
       placeholder: "Confirm password",
     },
   ]
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    try {
+      return await createUser(formValues)
+    } catch (error) {
+      console.error(`Error creating user at form`, error)
+    }
+  }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormValues({
@@ -73,7 +84,7 @@ export default function SignUp() {
         <h2>Dont&apos;t have an account ?</h2>
         <p>Sign up with an email and password</p>
         <div className={styles.form_wrap}>
-          <form action='' className={styles.form_signup}>
+          <form onSubmit={handleSubmit} className={styles.form_signup}>
             {formInputs}
             <Button text='Sign Up' />
           </form>

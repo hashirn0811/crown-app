@@ -7,9 +7,9 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 
-export const db = getFirestore()
+import { db } from "./firebase.helper"
 
-export async function createUserDoc(userAuth: User) {
+export async function createUserDoc(userAuth: User, otherData: object) {
   const userRef = doc(db, "users", userAuth.uid)
 
   const userSnap = await getDoc(userRef)
@@ -20,6 +20,7 @@ export async function createUserDoc(userAuth: User) {
       displayName,
       email,
       createdAt: serverTimestamp(),
+      ...otherData
     }
 
     try {
