@@ -1,14 +1,42 @@
 .button {
     padding-block: 0.4em;
     padding-inline: 2em;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+        outline: 1px solid currentColor;
+    }
+}
+
+.btn_default {
     background-color: black;
     color: #fff;
-    text-transform: uppercase;
+
     &:hover {
         background-color: #fff;
         color: #000;
-        outline: 1px solid currentColor;
+    }
+}
+
+.inverted {
+    background-color: #fff;
+    color: #000;
+
+    &:hover {
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+.google {
+    background-color: #357ae8;
+    color: #fff;
+
+    &:hover {
+        color: #000;
+        outline: unset;
     }
 }

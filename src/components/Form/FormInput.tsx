@@ -1,6 +1,5 @@
 import styles from "./FormInputs.module.scss"
 import { useRef } from "react"
-import classNames from "classnames"
 
 export type IFormInput = {
   name: string
@@ -18,7 +17,9 @@ export default function FormInput({
 }: IFormInput) {
   const inpRef = useRef<HTMLInputElement>(null)
 
-  //TODO: Find some other solution instead of this
+  /*TODO: Find some other solution instead of this
+    1. val.length ? addClass('.shrink', formLabel) : formLabel 
+  */
   function handleBlur() {
     if (!inpRef.current) return
 
@@ -39,7 +40,8 @@ export default function FormInput({
         ref={inpRef}
         onBlur={handleBlur}
       />
-      <label className={styles.formLabel}>{name}</label>
+      <label className={`${styles.formLabel}`}>{name}</label>
+      {/* <span>input errors here</span> */}
     </div>
   )
 }

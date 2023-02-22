@@ -1,6 +1,5 @@
-import { User, UserCredential } from "firebase/auth"
+import { User } from "firebase/auth"
 import {
-  getFirestore,
   doc,
   getDoc,
   setDoc,

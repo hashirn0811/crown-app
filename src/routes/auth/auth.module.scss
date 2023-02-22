@@ -1,0 +1,29 @@
+.section_login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_login {
+    align-self: start;
+    margin-top: 1.2rem;
+}
+
+.form_btn_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    & > button:last-child {
+        flex-basis: 18%;
+    }
+}

@@ -86,7 +86,7 @@ export default function SignUp() {
         <div className={styles.form_wrap}>
           <form onSubmit={handleSubmit} className={styles.form_signup}>
             {formInputs}
-            <Button text='Sign Up' />
+            <Button btnType='default' text='Sign Up' />
           </form>
         </div>
       </div>
