@@ -1,7 +1,6 @@
 import { initializeApp, FirebaseError } from 'firebase/app';
 import config from "../../config/firebase.json"
-
-import { getAuth, signInWithPopup, GoogleAuthProvider, User, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, signInWithPopup, GoogleAuthProvider, User, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, NextOrObserver, signOut } from "firebase/auth"
 import { createUserDoc } from './firestore.helper'
 import { ISignUp } from '../../routes/signup/signup';
 import { getFirestore } from "firebase/firestore";
@@ -57,4 +56,12 @@ export async function signIn(userData: ISignIn) {
       name
     }
   }
+}
+
+export function AuthListener(cb: NextOrObserver<User>) {
+  return onAuthStateChanged(auth, cb)
+}
+
+export async function logOut(user: User) {
+  return await signOut(auth)
 }

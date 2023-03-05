@@ -8,7 +8,7 @@ import {
 
 import { db } from "./firebase.helper"
 
-export async function createUserDoc(userAuth: User, otherData: object) {
+export async function createUserDoc(userAuth: User, otherData?: object) {
   const userRef = doc(db, "users", userAuth.uid)
 
   const userSnap = await getDoc(userRef)

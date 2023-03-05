@@ -1,21 +1,17 @@
 import styles from "./FormInputs.module.scss"
 import { useRef } from "react"
+import { UseFormRegister } from "react-hook-form"
+import { ISignUp } from "../../routes/signup/"
 
 export type IFormInput = {
-  name: string
-  type: string
-  //   placeholder: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-} & React.InputHTMLAttributes<HTMLInputElement>
+  label: keyof ISignUp
+  // Fix this
+  register: UseFormRegister<ISignUp>
+}
 
-export default function FormInput({
-  name,
-  type,
-  value,
-  placeholder,
-  onChange,
-}: IFormInput) {
-  const inpRef = useRef<HTMLInputElement>(null)
+export default function FormInput({ label, register }: IFormInput) {
+  const { ref, ...rest } = register(label)
+  const inpRef = useRef<HTMLInputElement | null>(null)
 
   /*TODO: Find some other solution instead of this
     1. val.length ? addClass('.shrink', formLabel) : formLabel 
@@ -31,16 +27,15 @@ export default function FormInput({
   return (
     <div className={styles.formInput_wrap}>
       <input
+        {...rest}
+        ref={(e) => {
+          ref(e)
+          inpRef.current = e
+        }}
         className={`${styles.formInput}`}
-        name={name}
-        type={type}
-        value={value}
-        // placeholder={placeholder}
-        onChange={onChange}
-        ref={inpRef}
         onBlur={handleBlur}
       />
-      <label className={`${styles.formLabel}`}>{name}</label>
+      <label className={`${styles.formLabel}`}>{label}</label>
       {/* <span>input errors here</span> */}
     </div>
   )
