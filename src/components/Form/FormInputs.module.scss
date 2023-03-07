@@ -1,4 +1,8 @@
 .formInput_wrap {
+    --color: red;
+    --animation-duration: 0.3s;
+    --animation-it-count: 10;
+    --border-color: grey;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -6,7 +10,7 @@
         text-transform: capitalize;
         color: grey;
         position: absolute;
-        top: 43%;
+        top: 23%;
     }
 
     margin-bottom: 2rem;
@@ -15,9 +19,9 @@
 .formInput {
     width: 100%;
     border: none;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--border-color);
     padding-block: 0.6em;
-
+    //  animation: shake 0.5s infinite;
     &:focus {
         outline: none;
     }
@@ -40,4 +44,17 @@
     top: -30%;
     font-size: 0.8rem;
     color: #000;
+}
+
+.invalid_feedback {
+    color: var(--color);
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(5px);
+    }
 }

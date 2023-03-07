@@ -1,0 +1,11 @@
+@import "animations";
+@import "reset";
+
+.invalid__state--form {
+    --invalid-text-clr: red;
+    --invalid-input-border: 1px solid var(--invalid-text-clr);
+    --animation-duration: 0.3s;
+    // --animation-easing:;
+    font-size: 0.8rem;
+    color: var(--invalid-text-clr);
+}

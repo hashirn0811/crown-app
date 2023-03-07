@@ -9,6 +9,13 @@
     &:hover {
         outline: 1px solid currentColor;
     }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background-color: black !important;
+        color: #fff !important;
+    }
 }
 
 .btn_default {

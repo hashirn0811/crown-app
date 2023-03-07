@@ -62,6 +62,6 @@ export function AuthListener(cb: NextOrObserver<User>) {
   return onAuthStateChanged(auth, cb)
 }
 
-export async function logOut(user: User) {
+export async function logOut() {
   return await signOut(auth)
 }
