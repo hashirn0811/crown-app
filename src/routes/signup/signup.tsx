@@ -5,6 +5,8 @@ import FormInput from "../../components/Form/"
 import Button from "../../components/Button/"
 import styles from "./signup.module.scss"
 import { createUser } from "../../helpers/firebase"
+import { UserContext } from "../../context"
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 export interface ISignUp {
   displayName: string
@@ -54,7 +56,10 @@ const signUpSchema = yup.object().shape({
 })
 
 export default function SignUp() {
+  const { setUser } = useContext(UserContext)
+
   const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -72,8 +77,10 @@ export default function SignUp() {
 
   async function onsubmit(data: ISignUp) {
     try {
-      await createUser(data)
-      return navigate("/auth")
+      const createdUser = await createUser(data)
+      console.log(createdUser?.user.displayName)
+      if (createdUser) setUser(createdUser.user)
+      return navigate("/")
     } catch (error) {
       console.error(`Threw on submit `, error)
     }

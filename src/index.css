@@ -6,8 +6,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /*
@@ -106,6 +105,18 @@ a {
   --animation-duration: 0.3s;
   font-size: 0.8rem;
   color: var(--invalid-text-clr);
+}
+
+.btn--link {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.btn--link:hover, .btn--link:active {
+  color: rebeccapurple;
 }
 
 /*# sourceMappingURL=index.css.map */

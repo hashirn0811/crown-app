@@ -10,6 +10,7 @@ import {
   onAuthStateChanged,
   NextOrObserver,
   signOut,
+  updateProfile,
 } from "firebase/auth"
 import { createUserDoc } from "./firestore.helper"
 import { ISignUp } from "../../routes/signup/signup"
@@ -48,8 +49,9 @@ export async function createUser(userData: ISignUp) {
       email,
       password
     )
-    const userDoc = await createUserDoc(createdUser.user, { displayName })
-    console.log(userDoc)
+    await createUserDoc(createdUser.user, { displayName })
+    await updateProfile(createdUser.user, { displayName })
+    return createdUser
   } catch (error) {
     console.error(`Error creating user`, error)
   }

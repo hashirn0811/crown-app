@@ -6,7 +6,8 @@ import { signIn, signInWithGooglePopup } from "../../helpers/firebase"
 import { FirebaseError } from "firebase/app"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
-
+import { useContext } from "react"
+import { UserContext } from "../../context"
 export interface ISignIn {
   email: string
   password: string
@@ -28,6 +29,8 @@ const Fields = [
 
 export default function Auth() {
   const navigate = useNavigate()
+
+  const { setUser } = useContext(UserContext)
 
   const {
     register,
@@ -54,7 +57,9 @@ export default function Auth() {
         })
       }
       clearErrors("root")
-      navigate("/")
+      // debugger
+      setUser(loginFeedBack.user)
+      return navigate("/")
     } catch (error) {
       console.error("error on submit", error)
     }
