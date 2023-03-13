@@ -12,3 +12,4 @@
 
 - [ ] Redirect to login on signup
 - [ ] User account page
+- [ ] Error Component

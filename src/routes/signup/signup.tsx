@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form"
+import { useForm, UseFormRegister } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import FormInput from "../../components/Form/"
@@ -84,14 +84,27 @@ export default function SignUp() {
         key={field.id}
         label={field.name as keyof ISignUp}
         register={register}
+        inputType={field.type}
         errors={errors}
+        required={true}
       />
     )
   })
 
-  const btn = <Button btnType='default' text='Sign Up' type='submit' />
+  const btn = (
+    <Button
+      btnType='default'
+      text='Sign Up'
+      type='submit'
+    />
+  )
   const btnDisabled = (
-    <Button btnType='default' text='Sign Up' type='submit' disabled />
+    <Button
+      btnType='default'
+      text='Sign Up'
+      type='submit'
+      disabled
+    />
   )
 
   return (

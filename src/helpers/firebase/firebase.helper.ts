@@ -1,11 +1,20 @@
-import { initializeApp, FirebaseError } from 'firebase/app';
+import { initializeApp, FirebaseError } from "firebase/app"
 import config from "../../config/firebase.json"
-import { getAuth, signInWithPopup, GoogleAuthProvider, User, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, NextOrObserver, signOut } from "firebase/auth"
-import { createUserDoc } from './firestore.helper'
-import { ISignUp } from '../../routes/signup/signup';
-import { getFirestore } from "firebase/firestore";
-import { ISignIn } from "../../routes/auth";
-
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  User,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  NextOrObserver,
+  signOut,
+} from "firebase/auth"
+import { createUserDoc } from "./firestore.helper"
+import { ISignUp } from "../../routes/signup/signup"
+import { getFirestore } from "firebase/firestore"
+import { ISignIn } from "../../routes/auth"
 
 const firebaseConfig = {
   apiKey: config.apiKey,
@@ -34,7 +43,11 @@ export async function createUser(userData: ISignUp) {
   if (!email || !password) return
 
   try {
-    const createdUser = await createUserWithEmailAndPassword(auth, email, password)
+    const createdUser = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
     const userDoc = await createUserDoc(createdUser.user, { displayName })
     console.log(userDoc)
   } catch (error) {
@@ -44,7 +57,7 @@ export async function createUser(userData: ISignUp) {
 
 export async function signIn(userData: ISignIn) {
   const { email, password } = userData
-  if (!email || !password) return
+  if (!email || !password) throw new Error(`No credentials provided`)
 
   try {
     return await signInWithEmailAndPassword(auth, email, password)
@@ -53,7 +66,7 @@ export async function signIn(userData: ISignIn) {
     return {
       code,
       message,
-      name
+      name,
     }
   }
 }

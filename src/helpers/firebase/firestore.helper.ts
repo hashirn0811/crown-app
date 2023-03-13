@@ -1,10 +1,5 @@
 import { User } from "firebase/auth"
-import {
-  doc,
-  getDoc,
-  setDoc,
-  serverTimestamp,
-} from "firebase/firestore"
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore"
 
 import { db } from "./firebase.helper"
 
@@ -19,7 +14,7 @@ export async function createUserDoc(userAuth: User, otherData?: object) {
       displayName,
       email,
       createdAt: serverTimestamp(),
-      ...otherData
+      ...otherData,
     }
 
     try {

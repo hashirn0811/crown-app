@@ -1,17 +1,28 @@
 import styles from "./FormInputs.module.scss"
-import { useRef } from "react"
-import { UseFormRegister, FieldErrors } from "react-hook-form"
-import { ISignUp } from "../../routes/signup/"
+import { HTMLInputTypeAttribute, useRef } from "react"
+import {
+  UseFormRegister,
+  FieldErrors,
+  FieldValues,
+  Path,
+} from "react-hook-form"
 
-export type IFormInput = {
-  label: keyof ISignUp
-  // Fix this
-  register: UseFormRegister<ISignUp>
-  errors?: FieldErrors<ISignUp>
+export type IFormInput<TFormValues extends FieldValues> = {
+  label: Path<TFormValues>
+  inputType?: HTMLInputTypeAttribute
+  register: UseFormRegister<TFormValues>
+  errors?: FieldErrors<TFormValues>
+  required?: boolean
 }
 
-export default function FormInput({ label, register, errors }: IFormInput) {
-  const { ref, ...rest } = register(label)
+export default function FormInput<TFormValues extends FieldValues>({
+  label,
+  register,
+  inputType,
+  errors,
+  required,
+}: IFormInput<TFormValues>) {
+  const { ref, ...rest } = register(label, { required })
   const { message: errorMessage } = errors?.[`${label}`] || {}
   const inpRef = useRef<HTMLInputElement | null>(null)
   /*TODO: Find some other solution instead of this
@@ -27,16 +38,8 @@ export default function FormInput({ label, register, errors }: IFormInput) {
     }
   }
 
-  const inputProps = {
-    type: "",
-  }
-
-  if (label === "password" || label === "confirmPassword") {
-    inputProps.type = "password"
-  }
-
   const errorElement = (
-    <span className='invalid__state--form'>{errorMessage}</span>
+    <span className='invalid__state--form'>{errorMessage as string}</span>
   )
 
   return (
@@ -49,7 +52,7 @@ export default function FormInput({ label, register, errors }: IFormInput) {
         }}
         className={`${styles.formInput}`}
         onBlur={handleBlur}
-        {...inputProps}
+        type={inputType}
       />
       <label className={`${styles.formLabel}`}>{label}</label>
       {errorMessage && errorElement}

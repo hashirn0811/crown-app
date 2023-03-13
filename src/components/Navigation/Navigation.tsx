@@ -23,27 +23,42 @@ export default function Navigation() {
         </div>
         <ul className='nav-wrap'>
           <li>
-            <Link className='main-nav-item' to='/shop'>
+            <Link
+              className='main-nav-item'
+              to='/shop'
+            >
               Shop
             </Link>
           </li>
           <li>
-            <Link className='main-nav-item' to='/contact'>
+            <Link
+              className='main-nav-item'
+              to='/contact'
+            >
               Contact
             </Link>
           </li>
           <li>
-            <Link className='main-nav-item' to='/cart'>
+            <Link
+              className='main-nav-item'
+              to='/cart'
+            >
               cart
             </Link>
           </li>
           <li>
             {user ? (
-              <button onClick={handleLogout} className='main-nav-item'>
+              <button
+                onClick={handleLogout}
+                className='main-nav-item'
+              >
                 Logout
               </button>
             ) : (
-              <Link to='/auth' className='main-nav-item'>
+              <Link
+                to='/auth'
+                className='main-nav-item'
+              >
                 Sign in
               </Link>
             )}

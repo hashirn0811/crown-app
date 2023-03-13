@@ -13,7 +13,10 @@ const btnTypes = {
 
 export default function Button({ text, btnType, ...other }: IButton) {
   return (
-    <button {...other} className={` ${btnTypes[btnType]} ${styles.button}`}>
+    <button
+      {...other}
+      className={` ${btnTypes[btnType]} ${styles.button}`}
+    >
       {text}
     </button>
   )
