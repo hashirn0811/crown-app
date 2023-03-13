@@ -5,6 +5,7 @@ import Button from "../../components/Button"
 import { signIn, signInWithGooglePopup } from "../../helpers/firebase"
 import { FirebaseError } from "firebase/app"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { useNavigate } from "react-router"
 
 export interface ISignIn {
   email: string
@@ -26,6 +27,8 @@ const Fields = [
 ]
 
 export default function Auth() {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -51,6 +54,7 @@ export default function Auth() {
         })
       }
       clearErrors("root")
+      navigate("/")
     } catch (error) {
       console.error("error on submit", error)
     }
@@ -58,7 +62,8 @@ export default function Auth() {
 
   async function handleGoogleLogin() {
     try {
-      return await signInWithGooglePopup()
+      await signInWithGooglePopup()
+      navigate("/")
     } catch (error) {
       console.error((error as FirebaseError).code)
       console.error(`Error logging in with google`)

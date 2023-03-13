@@ -8,9 +8,9 @@ import { logOut } from "../../helpers/firebase"
 export default function Navigation() {
   const { user } = useContext(UserContext)
 
-  async function handleLogout(e: React.MouseEvent<HTMLButtonElement>) {
+  async function handleLogout() {
     if (!user) return
-    await logOut(user)
+    await logOut()
   }
 
   return (

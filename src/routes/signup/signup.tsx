@@ -1,11 +1,11 @@
-import { useForm, UseFormRegister } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import FormInput from "../../components/Form/"
 import Button from "../../components/Button/"
 import styles from "./signup.module.scss"
 import { createUser } from "../../helpers/firebase"
-
+import { useNavigate } from "react-router-dom"
 export interface ISignUp {
   displayName: string
   email: string
@@ -54,6 +54,7 @@ const signUpSchema = yup.object().shape({
 })
 
 export default function SignUp() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -71,8 +72,8 @@ export default function SignUp() {
 
   async function onsubmit(data: ISignUp) {
     try {
-      console.log(data)
-      return await createUser(data)
+      await createUser(data)
+      return navigate("/auth")
     } catch (error) {
       console.error(`Threw on submit `, error)
     }
