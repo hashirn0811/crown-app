@@ -58,8 +58,7 @@ export default function Auth() {
 
   async function handleGoogleLogin() {
     try {
-      const creds = await signInWithGooglePopup()
-      console.log(creds)
+      return await signInWithGooglePopup()
     } catch (error) {
       console.error((error as FirebaseError).code)
       console.error(`Error logging in with google`)
@@ -77,7 +76,7 @@ export default function Auth() {
       />
     )
   })
-  //TODO: Refactor into a ErrorComponent
+  //TODO: Refactor into an ErrorComponent
   const errorField = (
     <span className='invalid__state--form'>Error: {errors.root?.message}</span>
   )
